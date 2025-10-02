@@ -1,86 +1,125 @@
-# 📖 Hướng dẫn sử dụng file `Redshift Path Override Setup.bat`
+# 🔄 Change Proxy Redshift Path code
 
-## 🎯 Mục đích
+<aside>  
+<img src="/icons/folder_gray.svg" alt="/icons/folder_gray.svg" width="40px" />  
 
-File batch này được tạo ra để **quản lý biến môi trường `REDSHIFT_PATHOVERRIDE_FILE`** trên Windows, giúp Redshift đọc file `redshift_path_override.txt` nhằm thay đổi đường dẫn Proxy.
+📥 **Download Here**
 
-Bạn có thể:
+[`Proxy_RS_pathoverride.bat`](attachment:09996643-933c-41ee-bb0d-049433b84733:Proxy_RS_pathoverride.bat)
 
-1. Cập nhật biến môi trường để trỏ tới file override hiện tại
-2. Tạo file override mới (mapping Old Path → New Path)
-3. Reset, xóa hẳn biến môi trường này khỏi hệ thống
+</aside>  
 
 ---
 
-## 🖥 Cách chạy
+# 📖 User Guide for `Redshift Path Override Setup.bat`
 
-- Nhấp đôi chuột vào file `.bat` hoặc chạy bằng **Command Prompt**
-- Khi mở, màn hình CMD hiện ra với các chức năng :
+## 🎯 Purpose
 
+This batch file is created to **manage the environment variable `REDSHIFT_PATHOVERRIDE_FILE`** on Windows, helping Redshift read the `redshift_path_override.txt` file in order to change Proxy paths.
+
+You can:
+
+1. Update the environment variable to point to the current override file
+2. Create a new override file (mapping `Old Path → New Path`)
+3. Reset and completely remove this environment variable from the system
+
+---
+
+## 🖥 How to Run
+
+* Double-click the `.bat` file or run it via **Command Prompt**
+* When opened, the CMD screen will show these functions:
+
+```bash
+[1] Update environment variable to point to the current override file
+[2] Create a new override file
+[3] Reset (completely remove REDSHIFT_PATHOVERRIDE_FILE from Windows)
 ```
-[1] Cap nhat bien moi truong de tro toi file override hien tai
-[2] Tao file override moi
-[3] Reset (xoa hoan toan REDSHIFT_PATHOVERRIDE_FILE khoi Windows)
+
+👉 Enter `1`, `2`, or `3` then press **Enter**.
+
+---
+
+## 🔧 Detailed Functions
+
+### 1️⃣ Update environment variable
+
+* Select **[1]**
+* The script will check if there is a `redshift_path_override.txt` file in the current folder.
+* If yes → it will assign:
+
+```bash
+REDSHIFT_PATHOVERRIDE_FILE = path\to\redshift_path_override.txt
 ```
 
-👉 Nhập số `1`, `2` hoặc `3` rồi bấm **Enter**.
+* Variable will be set for both **current session** and **Windows Registry**
+* If not found → it will return an error.
+
+➡ Use this when you already have an override file and just want Redshift to read it again.
 
 ---
 
-## 🔧 Các chức năng chi tiết
+### 2️⃣ Create a new override file
 
-### 1️⃣ Cập nhật biến môi trường
+* Select **[2]**
+* The script will delete the old override file (if any).
+* Then, you enter step by step:
 
-- Chọn **[1]**
-- Script sẽ kiểm tra có file `redshift_path_override.txt` trong thư mục hiện tại không.
-- Nếu có, nó sẽ gán biến `REDSHIFT_PATHOVERRIDE_FILE` = đường dẫn tới file đó (cả session hiện tại và lưu trong Windows).
-- Nếu không có, báo lỗi.
+```bash
+Enter Old Proxy Path (type "Done" to finish):
+```
 
-➡ Dùng khi bạn đã có sẵn file override và chỉ muốn Redshift nhận lại.
+* Input the **old Proxy path** → Enter
+* Input the **new Proxy path** → Enter
 
----
+**Example:**
 
-### 2️⃣ Tạo file override mới
+```bash
+Old: D:\Assets\Proxy\House\
+New: E:\Server\Proxy\House\
+```
 
-- Chọn **[2]**
-- Script sẽ xóa file override cũ (nếu có).
-- Sau đó, bạn nhập lần lượt:
-    
-    ```
-    Nhap Old Proxy Path (go "Done" de ket thuc):
-    ```
-    
-    - Điền đường dẫn Proxy cũ → Enter
-    - Tiếp theo nhập đường dẫn Proxy mới tương ứng → Enter
-    
-    Ví dụ:
-    
-    ```
-    Old: D:\Assets\Proxy\House\
-    New: E:\Server\Proxy\House\
-    
-    ```
-    
-- Mỗi cặp OLD_PATH → NEW_PATH sẽ được lưu vào file `redshift_path_override.txt`.
-- Khi xong, gõ **Done** để kết thúc.
-- Script sẽ tạo biến môi trường `REDSHIFT_PATHOVERRIDE_FILE` trỏ tới file mới.
+* Each `OLD_PATH → NEW_PATH` pair will be saved into `redshift_path_override.txt`
+* When finished, type **Done**
+* The script sets the environment variable `REDSHIFT_PATHOVERRIDE_FILE` pointing to this file
 
-⚠️ Lưu ý: **Không xóa file .txt này**, vì Redshift đọc trực tiếp từ nó.
+⚠️ **Do not delete this `.txt` file** — Redshift reads directly from it.
 
 ---
 
-### 3️⃣ Reset (xóa biến môi trường)
+### 3️⃣ Reset (remove environment variable)
 
-- Chọn **[3]**
-- Script xóa biến `REDSHIFT_PATHOVERRIDE_FILE` khỏi session hiện tại và khỏi Registry Windows.
-- Nếu vẫn còn thấy trong danh sách biến môi trường, bạn cần **đăng xuất hoặc mở lại CMD** để cập nhật.
+* Select **[3]**
 
-➡ Dùng khi bạn muốn gỡ bỏ hoàn toàn override khỏi hệ thống.
+* The script deletes `REDSHIFT_PATHOVERRIDE_FILE` from:
+
+  * Current CMD session
+  * Windows Registry
+
+* If still visible in the Environment Variables list → **log out or restart CMD** to refresh.
+
+➡ Use this when you want to remove the override completely.
 
 ---
 
-## ✅ Lời khuyên sử dụng
+## ✅ Usage Tips
 
-- Khi thay đổi file override, nhớ **tắt và mở lại phần mềm** (Houdini, Maya, C4D…) để Redshift nhận giá trị mới.
-- Nên chạy file `.bat` trong cùng thư mục với `redshift_path_override.txt`.
-- Nếu dùng nhiều máy trong studio, có thể copy file override và `.bat` sang để đồng bộ.
+* After changing the override file → **restart Houdini, Maya, C4D, etc.** so Redshift loads the new path.
+* Recommended: place the `.bat` file in the same folder as `redshift_path_override.txt`.
+* For multi-machine studios → copy the `.bat` and `.txt` file across machines for syncing.
+
+---
+
+👉 Gợi ý: bạn nên thêm **mục lục tự động (Table of Contents)** bằng cách dùng GitHub hỗ trợ anchor link như sau:
+
+```markdown
+- [Purpose](#-purpose)
+- [How to Run](#-how-to-run)
+- [Detailed Functions](#-detailed-functions)
+  - [Update environment variable](#1️⃣-update-environment-variable)
+  - [Create a new override file](#2️⃣-create-a-new-override-file)
+  - [Reset](#3️⃣-reset-remove-environment-variable)
+- [Usage Tips](#-usage-tips)
+```
+
+---
