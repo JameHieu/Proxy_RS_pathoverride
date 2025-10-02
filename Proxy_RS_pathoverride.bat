@@ -9,10 +9,10 @@ set CURRENT_DIR=%~dp0
 set OVERRIDE_FILE=%CURRENT_DIR%redshift_path_override.txt
 
 echo My name JamesDo, I'm here to help you change Proxy Redshift Path
-echo Ban muon lam gi?
-echo [1] Cap nhat file override .txt co san
-echo [2] Tao file override moi
-echo [3] Reset (xoa hoan toan REDSHIFT_PATHOVERRIDE_FILE khoi Windows)
+echo What do you want to do?
+echo [1] Update existing override .txt file
+echo [2] Create a new override file
+echo [3] Reset (completely remove REDSHIFT_PATHOVERRIDE_FILE from Windows)
 echo [4] Author
 set /p MODE=
 
@@ -21,7 +21,7 @@ if "%MODE%"=="2" goto NEW_FILE
 if "%MODE%"=="3" goto RESET_ENV
 if "%MODE%"=="4" goto OPEN_FB
 
-echo Lua chon khong hop le.
+echo Invalid choice.
 pause
 exit /b
 
@@ -29,9 +29,9 @@ exit /b
 if exist "%OVERRIDE_FILE%" (
     set REDSHIFT_PATHOVERRIDE_FILE=%OVERRIDE_FILE%
     setx REDSHIFT_PATHOVERRIDE_FILE "%OVERRIDE_FILE%"
-    echo Da cap nhat REDSHIFT_PATHOVERRIDE_FILE tro toi: %OVERRIDE_FILE%
+    echo Updated REDSHIFT_PATHOVERRIDE_FILE pointing to: %OVERRIDE_FILE%
 ) else (
-    echo Khong tim thay file override hien tai: %OVERRIDE_FILE%
+    echo Cannot find current override file: %OVERRIDE_FILE%
 )
 pause
 exit /b
@@ -41,19 +41,19 @@ if exist "%OVERRIDE_FILE%" del "%OVERRIDE_FILE%"
 
 :LOOP
 echo.
-echo Nhap Old Proxy Path (go "Done" de ket thuc):
+echo Enter Old Proxy Path (type "Done" to finish):
 set /p OLD_PATH=
 
 if /I "%OLD_PATH%"=="Done" goto END
 if "%OLD_PATH%"=="" (
-    echo  Duong dan cu khong duoc bo trong.
+    echo  Old path cannot be empty.
     goto LOOP
 )
 
-echo Nhap New Proxy Path:
+echo Enter New Proxy Path:
 set /p NEW_PATH=
 if "%NEW_PATH%"=="" (
-    echo  Duong dan moi khong duoc bo trong.
+    echo  New path cannot be empty.
     goto LOOP
 )
 
@@ -64,17 +64,17 @@ goto LOOP
 set REDSHIFT_PATHOVERRIDE_FILE=%OVERRIDE_FILE%
 setx REDSHIFT_PATHOVERRIDE_FILE "%OVERRIDE_FILE%"
 
-echo File override duoc tao tai: %OVERRIDE_FILE%
-echo Da thay duong dan OLD PATH thanh NEW PATH va luu vao file .txt ( khong duoc xoa .txt vua tao vi he thong dang doc truc tiep )
-echo Tat phan mem va mo lai de duoc cap nhat
+echo Override file created at: %OVERRIDE_FILE%
+echo Replaced OLD PATH with NEW PATH and saved into the .txt file (do not delete this .txt file because the system is reading it directly)
+echo Close and reopen the software to apply updates
 pause
 exit /b
 
 :RESET_ENV
 set REDSHIFT_PATHOVERRIDE_FILE=
 reg delete "HKCU\Environment" /F /V REDSHIFT_PATHOVERRIDE_FILE
-echo Da xoa hoan toan REDSHIFT_PATHOVERRIDE_FILE khoi Windows.
-echo Neu chua bien mat khoi list, hay dang xuat hoac mo lai CMD de cap nhat.
+echo Completely removed REDSHIFT_PATHOVERRIDE_FILE from Windows.
+echo If its still visible in the list, please log out or reopen CMD to refresh.
 pause
 exit /b
 
