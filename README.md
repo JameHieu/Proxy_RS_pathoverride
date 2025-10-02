@@ -101,24 +101,27 @@ New: E:\Server\Proxy\House\
 
 ---
 
+## 🔍 How to Find Old Proxy Paths
+
+If you don’t know the **Old Path** of a Proxy/Texture:
+
+1. Right-click your `.rs` file → **Open with Notepad**
+2. Look for texture paths inside, for example:
+
+```
+/D/Assets/Proxy/Building/wall_diffuse.tx
+/E/Server/Textures/House/floor_normal.tx
+```
+
+3. Copy these as the **Old Path** and set your desired **New Path** in the override file.
+
+✅ This is especially useful in **multi-machine studios**, where different artists may have different local paths.
+
+---
+
 ## ✅ Usage Tips
 
 * After changing the override file → **restart Houdini, Maya, C4D, etc.** so Redshift loads the new path.
 * Recommended: place the `.bat` file in the same folder as `redshift_path_override.txt`.
 * For multi-machine studios → copy the `.bat` and `.txt` file across machines for syncing.
-
----
-
-👉 Gợi ý: bạn nên thêm **mục lục tự động (Table of Contents)** bằng cách dùng GitHub hỗ trợ anchor link như sau:
-
-```markdown
-- [Purpose](#-purpose)
-- [How to Run](#-how-to-run)
-- [Detailed Functions](#-detailed-functions)
-  - [Update environment variable](#1️⃣-update-environment-variable)
-  - [Create a new override file](#2️⃣-create-a-new-override-file)
-  - [Reset](#3️⃣-reset-remove-environment-variable)
-- [Usage Tips](#-usage-tips)
-```
-
 ---
