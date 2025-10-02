@@ -1,11 +1,10 @@
 # 🔄 Change Proxy Redshift Path code
 
-<aside>  
-<img src="/icons/folder_gray.svg" alt="/icons/folder_gray.svg" width="40px" />  
+
 
 📥 **Download Here**
 
-[`Proxy_RS_pathoverride.bat`](attachment:09996643-933c-41ee-bb0d-049433b84733:Proxy_RS_pathoverride.bat)
+[![Proxy_RS_pathoverride](https://img.shields.io/badge/Download-Redshift%20Render%20Optimizer-blueviolet)](https://github.com/JameHieu/Proxy_RS_pathoverride/blob/main/Proxy_RS_pathoverride.bat)
 
 </aside>  
 
