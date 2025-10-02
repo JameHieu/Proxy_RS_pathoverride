@@ -10,11 +10,7 @@
 
 ---
 
-# 📖 User Guide for `Redshift Path Override Setup.bat`
-
----
-
-# ℹ️ About This Script
+## ℹ️ About This Script
 
 This batch file is **only a helper tool** to quickly create, update, or reset the `REDSHIFT_PATHOVERRIDE_FILE` environment variable.  
 It does **not** change Redshift’s core behavior — it simply automates setting the override file path for convenience.  
@@ -25,6 +21,8 @@ The concept of `REDSHIFT_PATHOVERRIDE_FILE` is explained in Maxon’s official d
 This script was inspired by that documentation to make everyday workflow faster and easier.
 
 ---
+
+# 📖 User Guide for `Redshift Path Override Setup.bat`
 
 ## 🎯 Purpose
 
